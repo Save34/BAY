@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAYmarket - качественные товары для вашего дома</title>
+    <style>
+        /* Основные стили */
+        :root {
+            --primary-color: #0e7cc9;
+            --secondary-color: #e6f0f9;
+            --accent-color: #f8b400;
+            --text-color: #333;
+            --light-text: #666;
+            --very-light-gray: #f5f5f5;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            background-color: var(--very-light-gray);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка сайта */
+        .header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo-img {
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid var(--secondary-color);
+            border-radius: 50px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-color);
+            font-size: 0.85rem;
+            position: relative;
+        }
+
+        .action-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .action-btn i {
+            font-size: 1.4rem;
+            margin-bottom: 3px;
+        }
+
+        .cart-count {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+
+        /* Навигация */
+        .main-nav {
+            background-color: var(--secondary-color);
+            padding: 12px 0;
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            padding: 8px 15px;
+            font-weight: 500;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Выпадающее меню */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            min-width: 200px;
+            border-radius: 4px;
+            display: none;
+            z-index: 10;
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Баннер */
+        .hero-banner {
+            height: 400px;
+            background-image: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%), url('https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            color: var(--white);
+            max-width: 600px;
+            padding: 30px;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero-text {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Категории */
+        .section {
+            padding: 50px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .category-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-img {
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .category-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .category-card:hover .category-img img {
+            transform: scale(1.05);
+        }
+
+        .category-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .category-count {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        /* Продукты */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        .product-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .action-icon {
+            width: 35px;
+            height: 35px;
+            background-color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .action-icon:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-category {
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            height: 48px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-description {
+            color: var(--light-text);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            height: 58px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .product-price {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: var(--light-text);
+            font-size: 0.9rem;
+            margin-right: 5px;
+        }
+
+        .add-to-cart {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        /* Преимущества */
+        .features {
+            background-color: var(--secondary-color);
+            padding: 60px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 15px;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .feature-text {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        /* Отзывы */
+        .testimonials {
+            background-color: var(--white);
+        }
+
+        .testimonials-slider {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .testimonial-slide {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 15px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-color);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 3rem;
+            position: absolute;
+            color: var(--secondary-color);
+            line-height: 1;
+        }
+
+        .testimonial-text::before {
+            top: -10px;
+            left: -20px;
+        }
+
+        .testimonial-text::after {
+            bottom: -30px;
+            right: -20px;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .testimonial-position {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active,
+        .slider-dot:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Подписка */
+        .newsletter {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .newsletter-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-text {
+            max-width: 600px;
+            margin: 0 auto 25px;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .newsletter-input {
+            width: 100%;
+            padding: 15px 150px 15px 20px;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .newsletter-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .newsletter-btn:hover {
+            background-color: var(--text-color);
+        }
+
+        /* Футер */
+        .footer {
+            background-color: #222;
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .footer-contact li {
+            display: flex;
+            margin-bottom: 15px;
+            color: #bbb;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            background-color: #444;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .payment-methods img {
+            height: 30px;
+            background-color: #fff;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #111;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Модальное окно корзины */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            width: 100%;
+            max-width: 800px;
+            border-radius: 8px;
+            overflow: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--accent-color);
+        }
+
+        .cart-items {
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .cart-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .quantity-input {
+            width: 40px;
+            height: 25px;
+            text-align: center;
+            border: 1px solid var(--secondary-color);
+            margin: 0 5px;
+        }
+
+        .remove-item {
+            color: #f44336;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+
+        .remove-item:hover {
+            text-decoration: underline;
+        }
+
+        .cart-total {
+            padding: 15px 20px;
+            background-color: var(--secondary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .total-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .checkout-btn {
+            background-color: var(--accent-color);
+        }
+
+        /* Адаптивный дизайн */
+        @media (max-width: 992px) {
+            .main-header {
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                margin-bottom: 15px;
+            }
+
+            .search-bar {
+                order: 3;
+                width: 100%;
+                margin: 15px 0 0;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar .container {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .nav-list {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 5px;
+            }
+
+            .hero-banner {
+                height: 350px;
+            }
+
+            .hero-content {
+                padding: 20px;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .features-grid {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-actions {
+                gap: 10px;
+            }
+
+            .action-btn span {
+                display: none;
+            }
+
+            .hero-banner {
+                height: 300px;
+            }
+
+            .hero-title {
+                font-size: 1.6rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .newsletter-input {
+                padding: 15px 120px 15px 15px;
+            }
+
+            .newsletter-btn {
+                padding: 10px 15px;
+            }
+        }
+
+        /* Анимации */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Быстрый просмотр товара */
+        .quickview-container {
+            padding: 20px;
+        }
+
+        .quickview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .quickview-gallery {
+            position: relative;
+        }
+
+        .main-image {
+            height: 300px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnail-list {
+            display: flex;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 70px;
+            height: 70px;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary-color);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-details h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .product-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="contact-info">
+                    <a href="tel:+996-555-123-456">+996 (555) 123-456</a>
+                    <a href="mailto:info@baymarket.kg">info@baymarket.kg</a>
+                </div>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="main-header">
+                <a href="#" class="logo">
+                    <img src="https://images.unsplash.com/photo-1571867424488-4565932edb41?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=40&h=40&q=80" alt="BAYmarket" class="logo-img">
+                    <span>BAYmarket</span>
+                </a>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="Поиск товаров...">
+                    <button type="button" class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="header-actions">
+                    <a href="#" class="action-btn">
+                        <i class="fas fa-user"></i>
+                        <span>Аккаунт</span>
+                    </a>
+                    <a href="#" class="action-btn">
+                        <i class="fas fa-heart"></i>
+                        <span>Избранное</span>
+                    </a>
+                    <a href="#" class="action-btn" id="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Корзина</span>
+                        <div class="cart-count">3</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Каталог</a>
+                        <ul class="dropdown">
+                            <li><a href="#" class="dropdown-item">Бытовая техника</a></li>
+                            <li><a href="#" class="dropdown-item">Посуда и кухонные принадлежности</a></li>
+                            <li><a href="#" class="dropdown-item">Товары для дома</a></li>
+                            <li><a href="#" class="dropdown-item">Национальные товары</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Новинки</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Акции</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Доставка</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Контакты</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Главный баннер -->
+    <section class="hero-banner">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Качественные товары для вашего дома</h1>
+                <p class="hero-text">BAYmarket - ваш надежный партнер в выборе товаров для дома и семьи. Широкий ассортимент по доступным ценам с доставкой по всему Кыргызстану!</p>
+                <a href="#" class="btn pulse">Смотреть каталог</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Категории -->
+    <section class="section">
+        <div class="container section-center">
+            <h2 class="section-title">Популярные категории</h2>
+            
+            <div class="categories">
+                <a href="#" class="category-card">
+                    <div class="category-img">
+                        <img src="https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Бытовая техника">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">Бытовая техника</h3>
+                        <p class="category-count">124 товара</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="category-card">
+                    <div class="category-img">
+                        <img src="https://images.unsplash.com/photo-1556911220-bda9da8a31be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Посуда и кухонные принадлежности">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">Посуда и кухонные принадлежности</h3>
+                        <p class="category-count">86 товаров</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="category-card">
+                    <div class="category-img">
+                        <img src="https://images.unsplash.com/photo-1584856872832-5d7908573f8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Товары для дома">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">Товары для дома</h3>
+                        <p class="category-count">75 товаров</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="category-card">
+                    <div class="category-img">
+                        <img src="https://images.unsplash.com/photo-1598264294394-ba29cf557627?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Национальные товары">
+                    </div>
+                    <div class="category-info">
+                        <h3 class="category-title">Национальные товары</h3>
+                        <p class="category-count">42 товара</p>
+                    </div>
+                </a>
+            </div>
+            
+            <a href="#" class="btn">Все категории</a>
+        </div>
+    </section>
+
+    <!-- Популярные товары -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Популярные товары</h2>
+            
+            <div class="products">
+                <div class="product-card">
+                    <div class="product-badge">Хит</div>
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1585515320310-259814833e62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Мультиварка REDMOND">
+                        <div class="product-actions">
+                            <a href="#" class="action-icon"><i class="fas fa-heart"></i></a>
+                            <a href="#" class="action-icon product-quickview"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="action-icon"><i class="fas fa-exchange-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <a href="#" class="product-category">Бытовая техника</a>
+                        <a href="#" class="product-title">Мультиварка REDMOND RMC-M90 5л с керамическим покрытием</a>
+                        <p class="product-description">Мощная мультиварка с 45 программами приготовления. Идеальна для большой семьи. Антипригарное керамическое покрытие.</p>
+                        <div class="product-bottom">
+                            <div class="product-price">
+                                <span class="old-price">8590 сом</span>
+                                6990 сом
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1594223274512-ad4200e8849b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Набор посуды">
+                        <div class="product-actions">
+                            <a href="#" class="action-icon"><i class="fas fa-heart"></i></a>
+                            <a href="#" class="action-icon product-quickview"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="action-icon"><i class="fas fa-exchange-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <a href="#" class="product-category">Посуда и кухонные принадлежности</a>
+                        <a href="#" class="product-title">Набор кухонной посуды из нержавеющей стали (16 предметов)</a>
+                        <p class="product-description">Качественный набор посуды из нержавеющей стали. Подходит для всех типов плит, включая индукционные.</p>
+                        <div class="product-bottom">
+                            <div class="product-price">
+                                5290 сом
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-badge">Новинка</div>
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Керамический чайный набор">
+                        <div class="product-actions">
+                            <a href="#" class="action-icon"><i class="fas fa-heart"></i></a>
+                            <a href="#" class="action-icon product-quickview"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="action-icon"><i class="fas fa-exchange-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <a href="#" class="product-category">Национальные товары</a>
+                        <a href="#" class="product-title">Керамический чайный набор с национальным орнаментом</a>
+                        <p class="product-description">Ручная работа мастеров из Кыргызстана. Уникальный дизайн с традиционными кыргызскими узорами.</p>
+                        <div class="product-bottom">
+                            <div class="product-price">
+                                3490 сом
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Комплект постельного белья">
+                        <div class="product-actions">
+                            <a href="#" class="action-icon"><i class="fas fa-heart"></i></a>
+                            <a href="#" class="action-icon product-quickview"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="action-icon"><i class="fas fa-exchange-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <a href="#" class="product-category">Товары для дома</a>
+                        <a href="#" class="product-title">Комплект постельного белья из 100% хлопка (2-спальный)</a>
+                        <p class="product-description">Высококачественный хлопок, экологически безопасный материал. Не выцветает после многочисленных стирок.</p>
+                        <div class="product-bottom">
+                            <div class="product-price">
+                                2990 сом
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn">Все товары</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="feature-title">Гарантия качества</h3>
+                    <p class="feature-text">Мы сотрудничаем только с проверенными производителями и гарантируем качество каждого товара в нашем магазине</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 class="feature-title">Быстрая доставка</h3>
+                    <p class="feature-text">Доставляем заказы по Бишкеку в течение 24 часов, по регионам Кыргызстана — от 2 до 5 дней</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3 class="feature-title">Выгодные цены</h3>
+                    <p class="feature-text">Прямые поставки от производителей позволяют нам поддерживать конкурентные цены на весь ассортимент</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">Поддержка 24/7</h3>
+                    <p class="feature-text">Наши консультанты всегда готовы помочь с выбором и ответить на ваши вопросы по телефону или в онлайн-чате</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">Отзывы наших клиентов</h2>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial-slide active">
+                    <div class="testimonial-avatar">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Айгуль">
+                    </div>
+                    <p class="testimonial-text">Очень довольна покупкой мультиварки в BAYmarket! Консультанты помогли выбрать подходящую модель, а доставка была на следующий день, как и обещали. Сейчас пользуюсь ею каждый день!</p>
+                    <h4 class="testimonial-name">Айгуль Асанова</h4>
+                    <p class="testimonial-position">Бишкек</p>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-avatar">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Максат">
+                    </div>
+                    <p class="testimonial-text">Заказывал набор посуды для новой квартиры. Качество отличное, цены намного ниже, чем в других магазинах. Однозначно буду рекомендовать BAYmarket друзьям и знакомым!</p>
+                    <h4 class="testimonial-name">Максат Джумабаев</h4>
+                    <p class="testimonial-position">Ош</p>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-avatar">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Гульназ">
+                    </div>
+                    <p class="testimonial-text">Купила комплект постельного белья, качество прекрасное! Хлопок очень мягкий и приятный на ощупь. После стирки не потеряло цвет и форму. Большое спасибо BAYmarket за отличное качество!</p>
+                    <h4 class="testimonial-name">Гульназ Токтогулова</h4>
+                    <p class="testimonial-position">Каракол</p>
+                </div>
+                
+                <div class="slider-nav">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Подписка -->
+    <section class="newsletter">
+        <div class="container">
+            <h2 class="newsletter-title">Подпишитесь на новости и акции</h2>
+            <p class="newsletter-text">Получайте информацию о новых поступлениях, специальных предложениях и акциях первыми! Подпишитесь на нашу рассылку и получите скидку 10% на первый заказ!</p>
+            
+            <form class="newsletter-form">
+                <input type="email" placeholder="Ваш e-mail" class="newsletter-input" required>
+                <button type="submit" class="newsletter-btn">Подписаться</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3 class="footer-title">О компании</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Наша история</a></li>
+                        <li><a href="#">Сертификаты качества</a></li>
+                        <li><a href="#">Новости</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Информация</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Возврат и обмен</a></li>
+                        <li><a href="#">Условия рассрочки</a></li>
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                        <li><a href="#">Часто задаваемые вопросы</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Категории</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Бытовая техника</a></li>
+                        <li><a href="#">Посуда и кухонные принадлежности</a></li>
+                        <li><a href="#">Товары для дома</a></li>
+                        <li><a href="#">Национальные товары</a></li>
+                        <li><a href="#">Все категории</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Контакты</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> г. Бишкек, ул. Ибраимова, 115</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+996-555-123-456">+996 (555) 123-456</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@baymarket.kg">info@baymarket.kg</a></li>
+                        <li><i class="fas fa-clock"></i> Пн-Сб: 9:00-20:00, Вс: 10:00-18:00</li>
+                    </ul>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/100px-Visa_Inc._logo.svg.png" alt="Visa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/100px-Mastercard-logo.svg.png" alt="MasterCard">
+                        <img src="https://elsom.kg/wp-content/uploads/2019/09/elsom-logo.png" width="50" alt="Элсом">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Visa_O-PAY_logo.svg/100px-Visa_O-PAY_logo.svg.png" alt="O!Деньги">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <div class="container">
+                <p>&copy; 2023 BAYmarket. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно корзины -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Корзина</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="cart-items">
+                <div class="cart-item">
+                    <div class="cart-item-img">
+                        <img src="https://images.unsplash.com/photo-1585515320310-259814833e62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Мультиварка REDMOND">
+                    </div>
+                    <div class="cart-item-info">
+                        <h4 class="cart-item-title">Мультиварка REDMOND RMC-M90 5л</h4>
+                        <div class="cart-item-price">6990 сом</div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn minus"><i class="fas fa-minus"></i></button>
+                            <input type="number" class="quantity-input" value="1" min="1">
+                            <button class="quantity-btn plus"><i class="fas fa-plus"></i></button>
+                            <button class="remove-item">Удалить</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cart-item">
+                    <div class="cart-item-img">
+                        <img src="https://images.unsplash.com/photo-1594223274512-ad4200e8849b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Набор посуды">
+                        <div class="product-actions">
+                            <a href="#" class="action-icon"><i class="fas fa-heart"></i></a>
+                            <a href="#" class="action-icon product-quickview"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="action-icon"><i class="fas fa-exchange-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <a href="#" class="product-category">Посуда и кухонные принадлежности</a>
+                        <a href="#" class="product-title">Набор кухонной посуды из нержавеющей стали (16 предметов)</a>
+                        <p class="product-description">Качественный набор посуды из нержавеющей стали. Подходит для всех типов плит, включая индукционные.</p>
+                        <div class="product-bottom">
+                            <div class="product-price">
+                                5290 сом
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cart-item">
+                    <div class="cart-item-img">
+                        <img src="https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Керамический чайный набор">
+                        <div class="product-actions">
+                            <a href="#" class="action-icon"><i class="fas fa-heart"></i></a>
+                            <a href="#" class="action-icon product-quickview"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="action-icon"><i class="fas fa-exchange-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <a href="#" class="product-category">Национальные товары</a>
+                        <a href="#" class="product-title">Керамический чайный набор с национальным орнаментом</a>
+                        <p class="product-description">Ручная работа мастеров из Кыргызстана. Уникальный дизайн с традиционными кыргызскими узорами.</p>
+                        <div class="product-bottom">
+                            <div class="product-price">
+                                3490 сом
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cart-item">
+                    <div class="cart-item-img">
+                        <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Комплект постельного белья">
+                        <div class="product-actions">
+                            <a href="#" class="action-icon"><i class="fas fa-heart"></i></a>
+                            <a href="#" class="action-icon product-quickview"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="action-icon"><i class="fas fa-exchange-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <a href="#" class="product-category">Товары для дома</a>
+                        <a href="#" class="product-title">Комплект постельного белья из 100% хлопка (2-спальный)</a>
+                        <p class="product-description">Высококачественный хлопок, экологически безопасный материал. Не выцветает после многочисленных стирок.</p>
+                        <div class="product-bottom">
+                            <div class="product-price">
+                                2990 сом
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-total">
+                <div class="total-price">Итого: 1230 сом</div>
+                <a href="#" class="btn checkout-btn">Оформить заказ</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно быстрого просмотра -->
+    <div class="modal" id="quickview-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Быстрый просмотр</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="quickview-container">
+                <div class="quickview-grid">
+                    <div class="quickview-gallery">
+                        <div class="main-image">
+                            <img src="https://images.unsplash.com/photo-1585515320310-259814833e62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Мультиварка REDMOND">
+                        </div>
+                        <div class="thumbnail-list">
+                            <div class="thumbnail active">
+                                <img src="https://images.unsplash.com/photo-1585515320310-259814833e62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Миниатюра 1">
+                            </div>
+                            <div class="thumbnail">
+                                <img src="https://images.unsplash.com/photo-1585515320310-259814833e62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Миниатюра 2">
+                            </div>
+                            <div class="thumbnail">
+                                <img src="https://images.unsplash.com/photo-1585515320310-259814833e62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Миниатюра 3">
+                            </div>
+                            <div class="thumbnail">
+                                <img src="https://images.unsplash.com/photo-1585515320310-259814833e62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Миниатюра 4">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-details">
+                        <h2>Мультиварка REDMOND RMC-M90 5л</h2>
+                        <div class="product-meta">
+                            <span><i class="fas fa-star"></i> 4.8/5 (24 отзыва)</span>
+                            <span><i class="fas fa-check-circle"></i> В наличии</span>
+                            <span><i class="fas fa-shipping-fast"></i> Доставка: 1-3 дня</span>
+                        </div>
+                        <p>Мощная мультиварка с 45 программами приготовления. Идеальна для большой семьи. Антипригарное керамическое покрытие.</p>
+                        
+                        <div class="product-price" style="margin: 20px 0;">
+                            <span class="old-price">8590 сом</span>
+                            <span style="font-size: 1.6rem; color: var(--primary-color);">6990 сом</span>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                            <div style="display: flex; align-items: center;">
+                                <label for="quickview-quantity" style="margin-right: 10px;">Количество:</label>
+                                <div class="cart-item-quantity" style="margin: 0;">
+                                    <button class="quantity-btn minus"><i class="fas fa-minus"></i></button>
+                                    <input type="number" id="quickview-quantity" class="quantity-input" value="1" min="1">
+                                    <button class="quantity-btn plus"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 15px;">
+                            <button class="btn" style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-shopping-cart"></i> В корзину</button>
+                            <button class="btn" style="background-color: var(--text-color);"><i class="fas fa-heart"></i></button>
+                            <button class="btn" style="background-color: var(--text-color);"><i class="fas fa-exchange-alt"></i></button>
+                        </div>
+                        
+                        <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--secondary-color);">
+                            <p><strong>Артикул:</strong> ECO-BB-001</p>
+                            <p><strong>Категория:</strong> <a href="#">Средства гигиены</a></p>
+                            <p><strong>Теги:</strong> <a href="#">эко</a>, <a href="#">бамбук</a>, <a href="#">гигиена</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Скрипты -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Инициализация: вычисление итоговой суммы корзины
+            updateTotal();
+            
+            // Открытие и закрытие модальных окон
+            $("#cart-btn").click(function(e) {
+                e.preventDefault();
+                $("#cart-modal").addClass("active");
+            });
+            
+            $(".close-modal").click(function() {
+                $(this).closest(".modal").removeClass("active");
+            });
+            
+            // При клике вне модального окна
+            $(window).click(function(e) {
+                if ($(e.target).hasClass("modal")) {
+                    $(".modal").removeClass("active");
+                }
+            });
+            
+            // Быстрый просмотр товара
+            $(".product-quickview").click(function(e) {
+                e.preventDefault();
+                // Получение данных товара (в реальном проекте здесь был бы AJAX-запрос)
+                // Для демонстрации используем данные ближайшей карточки товара
+                const card = $(this).closest('.product-card');
+                const title = card.find('.product-title').text();
+                const price = card.find('.product-price').html();
+                const img = card.find('.product-img img').attr('src').replace('300', '500x300');
+                const category = card.find('.product-category').text();
+                const description = card.find('.product-description').text();
+                
+                // Заполнение модального окна быстрого просмотра
+                $("#quickview-modal .product-details h2").text(title);
+                $("#quickview-modal .product-price").html(price);
+                $("#quickview-modal .main-image img").attr('src', img);
+                $("#quickview-modal .thumbnail.active img").attr('src', img.replace('500x300', '70'));
+                
+                // Показ модального окна
+                $("#quickview-modal").addClass("active");
+            });
+            
+            // Переключение миниатюр в быстром просмотре
+            $(".thumbnail").click(function() {
+                const imgSrc = $(this).find("img").attr("src").replace("70", "500x300");
+                $(".main-image img").attr("src", imgSrc);
+                $(".thumbnail").removeClass("active");
+                $(this).addClass("active");
+            });
+            
+            // Слайдер отзывов
+            $(".slider-dot").click(function() {
+                const slide = $(this).data("slide");
+                $(".testimonial-slide").removeClass("active");
+                $(".testimonial-slide").eq(slide).addClass("active");
+                $(".slider-dot").removeClass("active");
+                $(this).addClass("active");
+            });
+            
+            // Автоматическое переключение слайдов
+            let slideInterval;
+            let slideIndex = 0;
+            const slideCount = $(".testimonial-slide").length;
+            
+            function startSlideshow() {
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+            
+            function stopSlideshow() {
+                clearInterval(slideInterval);
+            }
+            
+            function nextSlide() {
+                slideIndex = (slideIndex + 1) % slideCount;
+                $(".testimonial-slide").removeClass("active");
+                $(".testimonial-slide").eq(slideIndex).addClass("active");
+                $(".slider-dot").removeClass("active");
+                $(".slider-dot").eq(slideIndex).addClass("active");
+            }
+            
+            // Запуск автоматического слайдшоу
+            startSlideshow();
+            
+            // Остановка слайдшоу при взаимодействии пользователя
+            $(".slider-dot").mouseenter(stopSlideshow);
+            $(".slider-dot").mouseleave(startSlideshow);
+            
+            // Кнопки изменения количества товаров
+            $(".quantity-btn.plus").click(function() {
+                const input = $(this).siblings(".quantity-input");
+                input.val(parseInt(input.val()) + 1);
+                updateTotal();
+            });
+            
+            $(".quantity-btn.minus").click(function() {
+                const input = $(this).siblings(".quantity-input");
+                if (parseInt(input.val()) > 1) {
+                    input.val(parseInt(input.val()) - 1);
+                    updateTotal();
+                }
+            });
+            
+            // Обновление количества при ручном вводе
+            $(".quantity-input").on('change', function() {
+                if (parseInt($(this).val()) < 1) {
+                    $(this).val(1);
+                }
+                updateTotal();
+            });
+            
+            // Удаление товара из корзины
+            $(".remove-item").click(function() {
+                $(this).closest(".cart-item").fadeOut(300, function() {
+                    $(this).remove();
+                    updateTotal();
+                    updateCartCount();
+                });
+            });
+            
+            // Функция обновления итоговой суммы
+            function updateTotal() {
+                let total = 0;
+                $(".cart-item").each(function() {
+                    // Извлекаем только числовое значение из текста цены
+                    const priceText = $(this).find(".cart-item-price").text();
+                    const price = parseInt(priceText.replace(/[^\d]/g, ''));
+                    const quantity = parseInt($(this).find(".quantity-input").val());
+                    total += price * quantity;
+                });
+                $(".total-price").text("Итого: " + total + " сом");
+            }
+            
+            // Функция обновления счетчика товаров в корзине
+            function updateCartCount() {
+                const itemCount = $(".cart-item").length;
+                $(".cart-count").text(itemCount);
+                
+                // Если корзина пуста, добавляем сообщение
+                if (itemCount === 0) {
+                    $(".cart-items").html('<p class="empty-cart-message" style="text-align: center; padding: 20px;">Ваша корзина пуста</p>');
+                    $(".cart-total .checkout-btn").addClass("disabled").css("opacity", "0.5");
+                } else {
+                    $(".cart-total .checkout-btn").removeClass("disabled").css("opacity", "1");
+                }
+            }
+            
+            // Добавление товара в корзину
+            $(".add-to-cart, .product-details .btn:first-child").click(function(e) {
+                e.preventDefault();
+                
+                // Анимация добавления в корзину
+                $(this).addClass("pulse");
+                setTimeout(() => {
+                    $(this).removeClass("pulse");
+                }, 1000);
+                
+                // Закрываем модальное окно быстрого просмотра, если открыто
+                $("#quickview-modal").removeClass("active");
+                
+                // В реальном проекте здесь был бы AJAX-запрос для добавления товара
+                alert("Товар добавлен в корзину!");
+                
+                // Обновление счетчика товаров
+                let count = parseInt($(".cart-count").text());
+                $(".cart-count").text(count + 1);
+            });
+            
+            // Валидация формы подписки
+            $(".newsletter-form").submit(function(e) {
+                e.preventDefault();
+                const email = $(".newsletter-input").val();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                if (emailRegex.test(email)) {
+                    alert("Спасибо за подписку! Промокод на скидку 10% отправлен вам на email: " + email);
+                    $(".newsletter-input").val("");
+                } else {
+                    alert("Пожалуйста, введите корректный email.");
+                }
+            });
+            
+            // Плавная прокрутка к разделам при клике на навигацию
+            $(".nav-link").click(function(e) {
+                if ($(this).attr("href") === "#") {
+                    e.preventDefault();
+                    // Пытаемся найти целевой раздел по тексту ссылки
+                    const targetText = $(this).text().toLowerCase();
+                    let targetSection;
+                    
+                    // Карта соответствия текста ссылок и классов разделов
+                    const sectionMap = {
+                        'главная': 'hero-banner',
+                        'каталог': 'section:first',
+                        'новинки': 'section',
+                        'акции': 'features',
+                        'о нас': 'testimonials',
+                        'контакты': 'footer'
+                    };
+                    
+                    targetSection = sectionMap[targetText] || 'body';
+                    
+                    $('html, body').animate({
+                        scrollTop: $("." + targetSection).offset().top - 80
+                    }, 800);
+                }
+            });
+            
+            // Добавление кнопки "Наверх" при прокрутке страницы
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 300) {
+                    if (!$(".back-to-top").length) {
+                        $("body").append('<a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>');
+                        $(".back-to-top").css({
+                            position: "fixed",
+                            bottom: "20px",
+                            right: "20px",
+                            width: "40px",
+                            height: "40px",
+                            background: "var(--primary-color)",
+                            color: "white",
+                            borderRadius: "50%",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            boxShadow: "0 2px 5px rgba(0,0,0,0.2)",
+                            opacity: "0",
+                            zIndex: "99",
+                            cursor: "pointer",
+                            transition: "all 0.3s ease"
+                        }).animate({opacity: 1}, 300);
+                    }
+                } else {
+                    $(".back-to-top").fadeOut(300, function() {
+                        $(this).remove();
+                    });
+                }
+            });
+            
+            // Прокрутка наверх при клике на кнопку
+            $(document).on("click", ".back-to-top", function(e) {
+                e.preventDefault();
+                $("html, body").animate({scrollTop: 0}, 600);
+            });
+            
+            // Адаптивное меню для мобильных устройств
+            if (window.innerWidth < 768) {
+                // Добавляем кнопку-бургер для мобильного меню
+                if (!$(".mobile-menu-toggle").length) {
+                    $(".main-nav .container").prepend('<button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>');
+                    $(".mobile-menu-toggle").css({
+                        background: "none",
+                        border: "none",
+                        color: "var(--primary-color)",
+                        fontSize: "1.5rem",
+                        cursor: "pointer",
+                        padding: "5px",
+                        display: "none"
+                    });
+                    
+                    // Скрываем меню на мобильных устройствах по умолчанию
+                    $(".nav-list").css({
+                        display: "none",
+                        flexDirection: "column",
+                        position: "absolute",
+                        top: "100%",
+                        left: "0",
+                        right: "0",
+                        background: "var(--white)",
+                        boxShadow: "var(--shadow)",
+                        zIndex: "100"
+                    });
+                    
+                    // Показываем бургер-меню
+                    $(".mobile-menu-toggle").css("display", "block");
+                    
+                    // Обработчик клика по бургер-меню
+                    $(".mobile-menu-toggle").click(function() {
+                        $(".nav-list").slideToggle();
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
